@@ -1,7 +1,8 @@
-package com.edurda77.ClientGitHub
+package com.edurda77.ClientGitHub.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.edurda77.ClientGitHub.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
