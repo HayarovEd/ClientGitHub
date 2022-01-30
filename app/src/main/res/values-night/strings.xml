@@ -2,4 +2,5 @@
 <resources>
     <string name="users">Пользователи</string>
     <string name="name_user">Пользователь</string>
+    <string name="repos">Репозитории</string>
 </resources>

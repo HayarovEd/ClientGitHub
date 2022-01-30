@@ -3,7 +3,7 @@ package com.edurda77.filmlibrary.ui
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.edurda77.ClientGitHub.ui.model.UserModel
+import com.edurda77.ClientGitHub.model.UserModel
 
 class UsersAdapter (private val list: List<UserModel>,
                    private val onClickListener: OnStateClickListener) :
