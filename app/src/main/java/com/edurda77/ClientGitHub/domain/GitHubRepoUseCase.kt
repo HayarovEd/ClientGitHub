@@ -7,5 +7,5 @@ import com.edurda77.ClientGitHub.model.RepoGitHubModel
 interface GitHubRepoUseCase {
     @WorkerThread
     @Throws(Throwable::class)
-    fun getReposForGitHub (userName: String): LiveData<List<RepoGitHubModel>>
+    fun getReposForGitHub(userName: String): List<RepoGitHubModel>?
 }

@@ -9,6 +9,20 @@
     tools:context=".ui.ReposGitHubActivity">
     <TextView
         android:layout_width="match_parent"
+        android:layout_height="@dimen/margin_twin"
+        android:id="@+id/user_repo"
+        android:layout_gravity="center"
+        android:hint="@string/name_user"
+        android:textSize="@dimen/margin_full"
+        />
+    <ImageView
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:id="@+id/user_avatar"
+        android:gravity="center"/>
+
+    <TextView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="@string/repos"

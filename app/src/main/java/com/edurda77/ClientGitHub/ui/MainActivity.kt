@@ -1,5 +1,6 @@
 package com.edurda77.ClientGitHub.ui
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -25,16 +26,15 @@ class MainActivity : AppCompatActivity() {
         val stateClickListener: UsersAdapter.OnStateClickListener =
             object : UsersAdapter.OnStateClickListener {
                 override fun onStateClick(currentUser: UserModel, position: Int) {
-                    /*Thread {
+                    Thread {
 
-                        //val iDMovie = goIDMovie.getReposForIDMovieSync(movie)
                         runOnUiThread {
-                            val intent = Intent(this@NotesActivity, NoteActivity::class.java)
-                            intent.putExtra(NoteMovie::class.java.simpleName, note)
+                            val intent = Intent(this@MainActivity, ReposGitHubActivity::class.java)
+                            intent.putExtra(UserModel::class.java.simpleName, currentUser)
 
                             startActivity(intent)
                         }
-                    }.start()*/
+                    }.start()
                 }
             }
         recyclerView.adapter = UsersAdapter(users,stateClickListener)
