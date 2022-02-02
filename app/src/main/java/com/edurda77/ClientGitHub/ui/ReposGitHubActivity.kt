@@ -1,7 +1,5 @@
 package com.edurda77.ClientGitHub.ui
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,7 +17,6 @@ class ReposGitHubActivity : AppCompatActivity() {
     private lateinit var binding: ActivityReposGitHubBinding
     private val gitHubRepoUseCase: GitHubRepoUseCase by lazy { app.gitHubRepoUseCase }
     private val reposOfUser = emptyList<RepoGitHubModel>().toMutableList()
-
     //val recyclerView = binding.reposRecyclerview
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,9 +31,9 @@ class ReposGitHubActivity : AppCompatActivity() {
         if (arguments != null) {
             user = arguments.getSerializable(UserModel::class.java.simpleName) as UserModel
             Thread {
-                val profile = gitHubRepoUseCase.getReposForGitHub(user.user)
+                val profile = gitHubRepoUseCase.getReposObservable(user.user)
                 runOnUiThread {
-                    profile?.forEach {
+                    profile.forEach {
                         userProfile.text = it.owner.login
                         reposOfUser.add(it)
                         Glide.with(this)
