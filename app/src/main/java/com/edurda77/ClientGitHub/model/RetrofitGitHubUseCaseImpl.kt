@@ -3,6 +3,7 @@ package com.edurda77.ClientGitHub.model
 import com.edurda77.ClientGitHub.domain.GitHubRepoApi
 import com.edurda77.ClientGitHub.domain.GitHubRepoUseCase
 import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.internal.util.HalfSerializer.onError
 import io.reactivex.rxjava3.internal.util.HalfSerializer.onNext
@@ -29,8 +30,24 @@ class RetrofitGitHubUseCaseImpl : GitHubRepoUseCase {
     }
 
     override fun getReposObservable(userName: String): List<RepoGitHubModel> {
-        api.listReposObservable(userName)
-            .flatMap {  }
+        val issueObservable: Observable<List<RepoGitHubModel>>  = api.listReposObservable(userName)
+        issueObservable.subscribeOn(Schedulers.newThread())
+            .observeOn(AndroidSchedulers.mainThread())
+            .flatMap()
+            .subscribe(Subscriber<List<RepoGitHubModel>> {
+                @Override
+                fun onCompleted() {
+
+                }
+                @Override
+                fun onError(error:Throwable) {
+
+                }
+                @Override
+                fun onNext (repos: List<RepoGitHubModel>) {
+
+                }
+            })
 
     }
 
