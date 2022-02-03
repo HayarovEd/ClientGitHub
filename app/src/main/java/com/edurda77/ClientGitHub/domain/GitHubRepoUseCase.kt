@@ -10,6 +10,6 @@ interface GitHubRepoUseCase {
     @WorkerThread
     @Throws(Throwable::class)
     fun getReposForGitHub(userName: String): List<RepoGitHubModel>?
-    fun getReposObservable(userName: String): List<RepoGitHubModel>
+    fun getReposObservable(userName: String): Observable<List<RepoGitHubModel>>
 
 }
