@@ -3,7 +3,6 @@ package com.edurda77.ClientGitHub.model
 import com.edurda77.ClientGitHub.domain.GitHubRepoApi
 import com.edurda77.ClientGitHub.domain.GitHubRepoUseCase
 import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import retrofit2.Retrofit
@@ -22,8 +21,8 @@ class RetrofitGitHubUseCaseImpl : GitHubRepoUseCase {
     private var api = retrofit.create(GitHubRepoApi::class.java)
 
 
-    override fun getReposForGitHub(userName: String): List<RepoGitHubModel>? {
-        return api.listRepos(userName).execute().body()
+    override fun getReposForGitHub(userName: String): List<RepoGitHubModel> {
+        return api.listRepos(userName).execute().body()!!
     }
 
     override fun getReposObservable(userName: String): Observable<List<RepoGitHubModel>> {

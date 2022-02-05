@@ -9,7 +9,7 @@ import io.reactivex.rxjava3.core.Single
 interface GitHubRepoUseCase {
     @WorkerThread
     @Throws(Throwable::class)
-    fun getReposForGitHub(userName: String): List<RepoGitHubModel>?
+    fun getReposForGitHub(userName: String): List<RepoGitHubModel>
     fun getReposObservable(userName: String): Observable<List<RepoGitHubModel>>
 
 }
