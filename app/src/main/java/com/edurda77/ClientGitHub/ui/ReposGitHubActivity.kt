@@ -13,6 +13,7 @@ import com.edurda77.ClientGitHub.model.RepoGitHubModel
 import com.edurda77.ClientGitHub.model.UserModel
 import com.edurda77.filmlibrary.ui.ReposAdapter
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.schedulers.Schedulers
 
@@ -34,8 +35,11 @@ class ReposGitHubActivity : AppCompatActivity() {
 
         if (arguments != null) {
             user = arguments.getSerializable(UserModel::class.java.simpleName) as UserModel
-            val profile = gitHubRepoUseCase.getReposObservable(user.user)
+            //val profile = gitHubRepoUseCase.getReposObservable(user.user)
+            val profile = observable(user.user)
+
             profile.subscribeOn(Schedulers.newThread())
+                .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread())
                 .map { it }
                 .subscribeBy(
@@ -76,5 +80,8 @@ class ReposGitHubActivity : AppCompatActivity() {
                 }
             }
         recyclerView.adapter = ReposAdapter(reposOfUser, stateClickListener)
+    }
+    private fun observable (user: String) = Observable.create<List<RepoGitHubModel>> { it
+        it.onNext(gitHubRepoUseCase.getReposForGitHub(user))
     }
 }

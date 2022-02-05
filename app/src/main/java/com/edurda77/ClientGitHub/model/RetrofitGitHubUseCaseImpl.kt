@@ -27,7 +27,6 @@ class RetrofitGitHubUseCaseImpl : GitHubRepoUseCase {
     }
 
     override fun getReposObservable(userName: String): Observable<List<RepoGitHubModel>> {
-        //val repos = emptyList<RepoGitHubModel>().toMutableList()
         return api.listReposObservable(userName)
             //.subscribeOn(Schedulers.io())
             //.observeOn(AndroidSchedulers.mainThread())
