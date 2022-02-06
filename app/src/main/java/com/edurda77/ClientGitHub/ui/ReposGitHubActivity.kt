@@ -26,15 +26,15 @@ class ReposGitHubActivity : AppCompatActivity() {
     private lateinit var binding: ActivityReposGitHubBinding
     private val gitHubRepoUseCase: GitHubRepoUseCase by lazy { app.gitHubRepoUseCase }
     private val reposOfUser = emptyList<RepoGitHubModel>().toMutableList()
-    private lateinit var adapter: ReposAdapter
+    //private lateinit var adapter: ReposAdapter
     //val recyclerView = binding.reposRecyclerview
 
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityReposGitHubBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        //val userProfile = binding.userRepo
-        //val userAvatar = binding.userAvatar
+        val userProfile = binding.userRepo
+        val userAvatar = binding.userAvatar
         val arguments = intent.extras
         val user: UserModel
 
@@ -43,7 +43,7 @@ class ReposGitHubActivity : AppCompatActivity() {
             setRecycledView(user)
         //val profile = gitHubRepoUseCase.getReposObservable(user.user)
 
-        /*val profile = observable(user.user)
+        val profile = observable(user.user)
             profile.subscribeOn(Schedulers.newThread())
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -66,7 +66,7 @@ class ReposGitHubActivity : AppCompatActivity() {
                         Toast.makeText(this, "Все загружено", Toast.LENGTH_SHORT).show()
                     }
                 )
-*/
+
 
         }
 
@@ -81,7 +81,7 @@ class ReposGitHubActivity : AppCompatActivity() {
 
                 }
             }
-        adapter = ReposAdapter(reposOfUser, stateClickListener)
+        /*adapter = ReposAdapter(reposOfUser, stateClickListener)
         recyclerView.adapter=adapter
         val userProfile = binding.userRepo
         val userAvatar = binding.userAvatar
@@ -100,8 +100,8 @@ class ReposGitHubActivity : AppCompatActivity() {
             }
             adapter.notifyDataSetChanged()
 
-        }
-        //recyclerView.adapter = ReposAdapter(reposOfUser, stateClickListener)
+        }*/
+        recyclerView.adapter = ReposAdapter(reposOfUser, stateClickListener)
     }
     private fun observable (user: String) = Observable.create<List<RepoGitHubModel>> { it
         it.onNext(gitHubRepoUseCase.getReposForGitHub(user))
