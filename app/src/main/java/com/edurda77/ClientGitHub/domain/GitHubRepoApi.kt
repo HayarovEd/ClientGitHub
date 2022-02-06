@@ -11,5 +11,7 @@ interface GitHubRepoApi {
     @GET("users/{user}/repos")
     fun listRepos(@Path("user") user: String?): Call<List<RepoGitHubModel>>
     @GET("users/{user}/repos")
+    fun listReposLivrData(@Path("user") user: String?): Call<MutableList<RepoGitHubModel>>
+    @GET("users/{user}/repos")
     fun listReposObservable(@Path("user") user: String?): Observable<List<RepoGitHubModel>>
 }
