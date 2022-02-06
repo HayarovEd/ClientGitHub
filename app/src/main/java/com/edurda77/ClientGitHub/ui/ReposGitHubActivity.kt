@@ -41,9 +41,9 @@ class ReposGitHubActivity : AppCompatActivity() {
         if (arguments != null) {
             user = arguments.getSerializable(UserModel::class.java.simpleName) as UserModel
             setRecycledView(user)
-        //val profile = gitHubRepoUseCase.getReposObservable(user.user)
+        //val profile = gitHubRepoUseCase.getReposObservable(user.user)// реализация через observable
 
-        val profile = observable(user.user)
+        val profile = observable(user.user)//реализация через retrofit-observable
             profile.subscribeOn(Schedulers.newThread())
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -81,7 +81,7 @@ class ReposGitHubActivity : AppCompatActivity() {
 
                 }
             }
-        /*adapter = ReposAdapter(reposOfUser, stateClickListener)
+        /*adapter = ReposAdapter(reposOfUser, stateClickListener)// реализация через viewModel
         recyclerView.adapter=adapter
         val userProfile = binding.userRepo
         val userAvatar = binding.userAvatar
