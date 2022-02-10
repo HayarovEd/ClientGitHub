@@ -1,17 +1,24 @@
-/*
+
 package com.edurda77.ClientGitHub.model
 
-import androidx.lifecycle.LiveData
+import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.edurda77.ClientGitHub.model.Utility.isInternetAvailable
 
 class UserGitHubViewModel(
-    //private val liveDataForViewToObserve: MutableLiveData<List<RepoGitHubModel>> = MutableLiveData(),
-    private val retrofitImpl: RetrofitGitHubUseCaseImpl = RetrofitGitHubUseCaseImpl(),
-) : ViewModel() {
-    fun getData(user:String): LiveData<List<RepoGitHubModel>> {
+    private val context: Context,
 
-        return retrofitImpl.getReposForGitHub(user)
+) : ViewModel() {
+    private var listData = MutableLiveData<List<RepoGitHubModel>>()
+
+
+    fun getData(userName: String) : MutableLiveData<List<RepoGitHubModel>>{
+        val retrofitGitHubUseCaseImpl=RetrofitGitHubUseCaseImpl()
+        if(context.isInternetAvailable()) {
+            listData = retrofitGitHubUseCaseImpl.getMutableLiveData(context,userName)
+        }
+        return listData
     }
 
-}*/
+}
