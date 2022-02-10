@@ -1,5 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">ClientGitHub</string>
     <string name="users">Пользователи</string>
     <string name="name_user">Пользователь</string>
     <string name="repos">Репозитории</string>

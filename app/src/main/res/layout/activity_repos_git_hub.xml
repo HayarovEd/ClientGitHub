@@ -4,19 +4,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/purple_500"
+    android:background="@color/teal_700"
     android:orientation="vertical"
-    tools:context=".ui.MainActivity">
+    tools:context=".ui.ReposGitHubActivity">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/margin_twin"
+        android:id="@+id/user_repo"
+        android:layout_gravity="center"
+        android:hint="@string/name_user"
+        android:textSize="@dimen/margin_full"
+        />
+    <ImageView
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:id="@+id/user_avatar"
+        android:gravity="center"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="@string/users"
+        android:text="@string/repos"
         android:textSize="@dimen/margin_full" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/users_recyclerview"
+        android:id="@+id/repos_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin_half"
