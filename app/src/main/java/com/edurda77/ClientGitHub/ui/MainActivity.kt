@@ -11,7 +11,7 @@ import com.edurda77.filmlibrary.ui.UsersAdapter
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private val userOfGitHub = emptyList<UserModel>().toMutableList()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
     private fun setRecycledView() {
         val recyclerView: RecyclerView = binding.usersRecyclerview
         recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        val users=initNotes()
+        val users=app.getUsers()
         val stateClickListener: UsersAdapter.OnStateClickListener =
             object : UsersAdapter.OnStateClickListener {
                 override fun onStateClick(currentUser: UserModel, position: Int) {
@@ -39,10 +39,5 @@ class MainActivity : AppCompatActivity() {
             }
         recyclerView.adapter = UsersAdapter(users,stateClickListener)
     }
-    private fun initNotes(): List<UserModel>{
-        userOfGitHub.add(UserModel("HayarovEd"))
-        userOfGitHub.add(UserModel("kshalnov"))
-        userOfGitHub.add(UserModel("robertBadamshin"))
-        return userOfGitHub
-    }
+
 }
