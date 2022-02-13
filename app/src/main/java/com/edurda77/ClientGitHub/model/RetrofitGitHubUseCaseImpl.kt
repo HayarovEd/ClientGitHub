@@ -20,14 +20,9 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 const val BASE_URL = "https://api.github.com/"
 
-class RetrofitGitHubUseCaseImpl : GitHubRepoUseCase {
+class RetrofitGitHubUseCaseImpl(private var api:GitHubRepoApi) : GitHubRepoUseCase {
 
-    private var retrofit: Retrofit = Retrofit.Builder()
-        .baseUrl(BASE_URL)
-        .addCallAdapterFactory(RxJava3CallAdapterFactory.createWithScheduler(Schedulers.io()))
-        .addConverterFactory(GsonConverterFactory.create())
-        .build()
-    private var api = retrofit.create(GitHubRepoApi::class.java)
+
 
 
     override fun getReposForGitHub(userName: String): List<RepoGitHubModel> {

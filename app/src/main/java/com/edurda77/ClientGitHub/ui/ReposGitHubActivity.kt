@@ -26,7 +26,7 @@ class ReposGitHubActivity : AppCompatActivity() {
     private lateinit var binding: ActivityReposGitHubBinding
     private val gitHubRepoUseCase: GitHubRepoUseCase by lazy { app.gitHubRepoUseCase }
     private val reposOfUser = emptyList<RepoGitHubModel>().toMutableList()
-    //private lateinit var adapter: ReposAdapter
+    private lateinit var adapter: ReposAdapter
     //val recyclerView = binding.reposRecyclerview
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,7 +43,7 @@ class ReposGitHubActivity : AppCompatActivity() {
             setRecycledView(user)
         //val profile = gitHubRepoUseCase.getReposObservable(user.user)// реализация через observable
 
-        val profile = observable(user.user)//реализация через retrofit-observable
+        /*val profile = observable(user.user)//реализация через retrofit-observable
             profile.subscribeOn(Schedulers.newThread())
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -65,7 +65,7 @@ class ReposGitHubActivity : AppCompatActivity() {
                     onComplete = {
                         Toast.makeText(this, "Все загружено", Toast.LENGTH_SHORT).show()
                     }
-                )
+                )*/
 
 
         }
@@ -81,7 +81,7 @@ class ReposGitHubActivity : AppCompatActivity() {
 
                 }
             }
-        /*adapter = ReposAdapter(reposOfUser, stateClickListener)// реализация через viewModel
+        adapter = ReposAdapter(reposOfUser, stateClickListener)// реализация через viewModel
         recyclerView.adapter=adapter
         val userProfile = binding.userRepo
         val userAvatar = binding.userAvatar
@@ -100,7 +100,7 @@ class ReposGitHubActivity : AppCompatActivity() {
             }
             adapter.notifyDataSetChanged()
 
-        }*/
+        }
         recyclerView.adapter = ReposAdapter(reposOfUser, stateClickListener)
     }
     private fun observable (user: String) = Observable.create<List<RepoGitHubModel>> { it
