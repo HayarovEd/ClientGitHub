@@ -5,6 +5,7 @@ import android.content.Context
 import com.edurda77.ClientGitHub.domain.GitHubRepoApi
 import com.edurda77.ClientGitHub.domain.GitHubRepoUseCase
 import com.edurda77.ClientGitHub.model.BASE_URL
+import com.edurda77.ClientGitHub.model.RepoGitHubModel
 import com.edurda77.ClientGitHub.model.RetrofitGitHubUseCaseImpl
 import com.edurda77.ClientGitHub.model.UserModel
 import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory
@@ -21,6 +22,7 @@ class App : Application() {
         userOfGitHub.add(UserModel("robertBadamshin"))
         return userOfGitHub
     }
+
 
     private val retrofit: Retrofit by lazy {
         Retrofit.Builder()

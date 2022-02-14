@@ -1,10 +1,7 @@
 package com.edurda77.ClientGitHub.ui
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -15,11 +12,7 @@ import com.edurda77.ClientGitHub.model.RepoGitHubModel
 import com.edurda77.ClientGitHub.model.UserGitHubViewModel
 import com.edurda77.ClientGitHub.model.UserModel
 import com.edurda77.filmlibrary.ui.ReposAdapter
-import com.edurda77.filmlibrary.ui.UsersAdapter
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
-import io.reactivex.rxjava3.kotlin.subscribeBy
-import io.reactivex.rxjava3.schedulers.Schedulers
 
 
 class ReposGitHubActivity : AppCompatActivity() {
@@ -36,10 +29,9 @@ class ReposGitHubActivity : AppCompatActivity() {
         val userProfile = binding.userRepo
         val userAvatar = binding.userAvatar
         val arguments = intent.extras
-        val user: UserModel
 
         if (arguments != null) {
-            user = arguments.getSerializable(UserModel::class.java.simpleName) as UserModel
+            val  user = arguments.getSerializable(UserModel::class.java.simpleName) as UserModel
             setRecycledView(user)
         //val profile = gitHubRepoUseCase.getReposObservable(user.user)// реализация через observable
 
