@@ -21,7 +21,7 @@ class ReposGitHubActivity : AppCompatActivity() {
     private lateinit var binding: ActivityReposGitHubBinding
 
     @Inject
-    val gitHubRepoUseCase: GitHubRepoUseCase
+    lateinit var gitHubRepoUseCase: GitHubRepoUseCase
 
     //private val gitHubRepoUseCase: GitHubRepoUseCase by lazy { app.gitHubRepoUseCase }
 
@@ -32,6 +32,7 @@ class ReposGitHubActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityReposGitHubBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
+        app.di.injectGitHubActivity(this)
         setContentView(binding.root)
         //val userProfile = binding.userRepo
         //val userAvatar = binding.userAvatar

@@ -2,8 +2,15 @@ package com.edurda77.ClientGitHub.ui
 
 import android.app.Application
 import android.content.Context
+import com.edurda77.ClientGitHub.di.DaggerMyComponent
+import com.edurda77.ClientGitHub.di.MyModule
 
 class App : Application() {
+    val di by lazy {
+        DaggerMyComponent.builder()
+            .myModule(MyModule())
+            .build()
+    }
 
     /*fun getUsers(): List<UserModel> {
         val userOfGitHub = emptyList<UserModel>().toMutableList()
@@ -27,6 +34,8 @@ class App : Application() {
     val gitHubRepoUseCase: GitHubRepoUseCase by lazy {
         RetrofitGitHubUseCaseImpl(api)
     }*/
+
+
 }
 
 val Context.app

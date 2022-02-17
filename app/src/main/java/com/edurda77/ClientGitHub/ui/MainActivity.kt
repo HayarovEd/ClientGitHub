@@ -13,13 +13,14 @@ import javax.inject.Inject
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     @Inject
-    val users: List<UserModel>
+    lateinit var users: List<UserModel>
     //private val users: List<UserModel> by lazy { app.getUsers() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityMainBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        app.di.inject(this)
         setRecycledView()
     }
     private fun setRecycledView() {

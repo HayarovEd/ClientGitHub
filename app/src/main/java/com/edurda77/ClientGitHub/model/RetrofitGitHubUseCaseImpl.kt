@@ -16,12 +16,11 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import javax.inject.Inject
 
 
 const val BASE_URL = "https://api.github.com/"
 
-class RetrofitGitHubUseCaseImpl(@Inject val api:GitHubRepoApi) : GitHubRepoUseCase {
+class RetrofitGitHubUseCaseImpl(private var api:GitHubRepoApi) : GitHubRepoUseCase {
 
 
 
