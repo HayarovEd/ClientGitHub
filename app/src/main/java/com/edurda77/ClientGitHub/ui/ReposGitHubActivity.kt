@@ -1,5 +1,6 @@
 package com.edurda77.ClientGitHub.ui
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,21 +14,27 @@ import com.edurda77.ClientGitHub.model.UserGitHubViewModel
 import com.edurda77.ClientGitHub.model.UserModel
 import com.edurda77.filmlibrary.ui.ReposAdapter
 import io.reactivex.rxjava3.core.Observable
+import javax.inject.Inject
 
 
 class ReposGitHubActivity : AppCompatActivity() {
     private lateinit var binding: ActivityReposGitHubBinding
-    private val gitHubRepoUseCase: GitHubRepoUseCase by lazy { app.gitHubRepoUseCase }
+
+    @Inject
+    val gitHubRepoUseCase: GitHubRepoUseCase
+
+    //private val gitHubRepoUseCase: GitHubRepoUseCase by lazy { app.gitHubRepoUseCase }
+
     private val reposOfUser = emptyList<RepoGitHubModel>().toMutableList()
-    private lateinit var adapter: ReposAdapter
+
     //val recyclerView = binding.reposRecyclerview
 
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityReposGitHubBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        val userProfile = binding.userRepo
-        val userAvatar = binding.userAvatar
+        //val userProfile = binding.userRepo
+        //val userAvatar = binding.userAvatar
         val arguments = intent.extras
 
         if (arguments != null) {
@@ -64,6 +71,7 @@ class ReposGitHubActivity : AppCompatActivity() {
 
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun setRecycledView(user:UserModel) {
         val recyclerView: RecyclerView = binding.reposRecyclerview
         recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
@@ -73,7 +81,7 @@ class ReposGitHubActivity : AppCompatActivity() {
 
                 }
             }
-        adapter = ReposAdapter(reposOfUser, stateClickListener)// реализация через viewModel
+        val adapter = ReposAdapter(reposOfUser, stateClickListener)// реализация через viewModel
         recyclerView.adapter=adapter
         val userProfile = binding.userRepo
         val userAvatar = binding.userAvatar
