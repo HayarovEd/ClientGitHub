@@ -1,3 +1,4 @@
+/*
 package com.edurda77.ClientGitHub.di
 
 import com.edurda77.ClientGitHub.domain.GitHubRepoApi
@@ -40,4 +41,4 @@ class MyModule {
         return RetrofitGitHubUseCaseImpl(api)
     }
 
-}
+}*/

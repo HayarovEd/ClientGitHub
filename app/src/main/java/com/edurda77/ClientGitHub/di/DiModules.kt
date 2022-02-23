@@ -5,7 +5,6 @@ import com.edurda77.ClientGitHub.domain.GitHubRepoUseCase
 import com.edurda77.ClientGitHub.model.BASE_URL
 import com.edurda77.ClientGitHub.model.RetrofitGitHubUseCaseImpl
 import com.edurda77.ClientGitHub.model.UserModel
-import dagger.Provides
 import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.koin.dsl.module

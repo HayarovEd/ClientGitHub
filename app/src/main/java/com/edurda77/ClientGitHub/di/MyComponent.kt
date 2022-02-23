@@ -1,3 +1,4 @@
+/*
 package com.edurda77.ClientGitHub.di
 
 import com.edurda77.ClientGitHub.ui.MainActivity
@@ -10,4 +11,4 @@ interface MyComponent {
     fun injectGitHubActivity(reposGitHubActivity: ReposGitHubActivity) {
 
     }
-}
+}*/

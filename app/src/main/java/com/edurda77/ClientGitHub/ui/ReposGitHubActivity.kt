@@ -14,14 +14,14 @@ import com.edurda77.ClientGitHub.model.UserGitHubViewModel
 import com.edurda77.ClientGitHub.model.UserModel
 import com.edurda77.filmlibrary.ui.ReposAdapter
 import io.reactivex.rxjava3.core.Observable
-import javax.inject.Inject
+import org.koin.android.ext.android.inject
 
 
 class ReposGitHubActivity : AppCompatActivity() {
     private lateinit var binding: ActivityReposGitHubBinding
 
-    @Inject
-    lateinit var gitHubRepoUseCase: GitHubRepoUseCase
+
+    private val gitHubRepoUseCase: GitHubRepoUseCase by inject()
 
     //private val gitHubRepoUseCase: GitHubRepoUseCase by lazy { app.gitHubRepoUseCase }
 
@@ -32,7 +32,7 @@ class ReposGitHubActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityReposGitHubBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
-        app.di.injectGitHubActivity(this)
+        //app.di.injectGitHubActivity(this)
         setContentView(binding.root)
         //val userProfile = binding.userRepo
         //val userAvatar = binding.userAvatar
