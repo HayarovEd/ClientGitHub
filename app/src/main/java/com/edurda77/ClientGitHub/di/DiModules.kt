@@ -4,9 +4,11 @@ import com.edurda77.ClientGitHub.domain.GitHubRepoApi
 import com.edurda77.ClientGitHub.domain.GitHubRepoUseCase
 import com.edurda77.ClientGitHub.model.BASE_URL
 import com.edurda77.ClientGitHub.model.RetrofitGitHubUseCaseImpl
+import com.edurda77.ClientGitHub.model.UserGitHubViewModel
 import com.edurda77.ClientGitHub.model.UserModel
 import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory
 import io.reactivex.rxjava3.schedulers.Schedulers
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -32,6 +34,7 @@ val appModule = module {
         userOfGitHub.add(UserModel("robertBadamshin"))
         userOfGitHub
     }
+    viewModel { UserGitHubViewModel(get()) }
     //factory { MySimplePresenter(get()) }
 }
 
