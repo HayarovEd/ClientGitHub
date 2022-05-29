@@ -1,10 +1,7 @@
 package com.edurda77.ClientGitHub.ui
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -15,18 +12,14 @@ import com.edurda77.ClientGitHub.model.RepoGitHubModel
 import com.edurda77.ClientGitHub.model.UserGitHubViewModel
 import com.edurda77.ClientGitHub.model.UserModel
 import com.edurda77.filmlibrary.ui.ReposAdapter
-import com.edurda77.filmlibrary.ui.UsersAdapter
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
-import io.reactivex.rxjava3.kotlin.subscribeBy
-import io.reactivex.rxjava3.schedulers.Schedulers
 
 
 class ReposGitHubActivity : AppCompatActivity() {
     private lateinit var binding: ActivityReposGitHubBinding
     private val gitHubRepoUseCase: GitHubRepoUseCase by lazy { app.gitHubRepoUseCase }
     private val reposOfUser = emptyList<RepoGitHubModel>().toMutableList()
-    //private lateinit var adapter: ReposAdapter
+    private lateinit var adapter: ReposAdapter
     //val recyclerView = binding.reposRecyclerview
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,14 +29,13 @@ class ReposGitHubActivity : AppCompatActivity() {
         val userProfile = binding.userRepo
         val userAvatar = binding.userAvatar
         val arguments = intent.extras
-        val user: UserModel
 
         if (arguments != null) {
-            user = arguments.getSerializable(UserModel::class.java.simpleName) as UserModel
+            val  user = arguments.getSerializable(UserModel::class.java.simpleName) as UserModel
             setRecycledView(user)
         //val profile = gitHubRepoUseCase.getReposObservable(user.user)// реализация через observable
 
-        val profile = observable(user.user)//реализация через retrofit-observable
+        /*val profile = observable(user.user)//реализация через retrofit-observable
             profile.subscribeOn(Schedulers.newThread())
                 .subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -65,7 +57,7 @@ class ReposGitHubActivity : AppCompatActivity() {
                     onComplete = {
                         Toast.makeText(this, "Все загружено", Toast.LENGTH_SHORT).show()
                     }
-                )
+                )*/
 
 
         }
@@ -81,7 +73,7 @@ class ReposGitHubActivity : AppCompatActivity() {
 
                 }
             }
-        /*adapter = ReposAdapter(reposOfUser, stateClickListener)// реализация через viewModel
+        adapter = ReposAdapter(reposOfUser, stateClickListener)// реализация через viewModel
         recyclerView.adapter=adapter
         val userProfile = binding.userRepo
         val userAvatar = binding.userAvatar
@@ -100,7 +92,7 @@ class ReposGitHubActivity : AppCompatActivity() {
             }
             adapter.notifyDataSetChanged()
 
-        }*/
+        }
         recyclerView.adapter = ReposAdapter(reposOfUser, stateClickListener)
     }
     private fun observable (user: String) = Observable.create<List<RepoGitHubModel>> { it
