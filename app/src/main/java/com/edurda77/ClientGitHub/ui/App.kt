@@ -2,15 +2,25 @@ package com.edurda77.ClientGitHub.ui
 
 import android.app.Application
 import android.content.Context
-import com.edurda77.ClientGitHub.di.DaggerMyComponent
-import com.edurda77.ClientGitHub.di.MyModule
+import com.edurda77.ClientGitHub.di.appModule
+import org.koin.android.ext.koin.androidContext
+import org.koin.android.ext.koin.androidLogger
+import org.koin.core.context.GlobalContext.startKoin
 
 class App : Application() {
-    val di by lazy {
+    override fun onCreate() {
+        super.onCreate()
+        startKoin{
+            //androidLogger()
+            androidContext(this@App)
+            modules(appModule)
+        }
+    }
+   /* val di by lazy {
         DaggerMyComponent.builder()
             .myModule(MyModule())
             .build()
-    }
+    }*/
 
     /*fun getUsers(): List<UserModel> {
         val userOfGitHub = emptyList<UserModel>().toMutableList()

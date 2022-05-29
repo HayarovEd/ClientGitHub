@@ -8,19 +8,20 @@ import androidx.recyclerview.widget.RecyclerView
 import com.edurda77.ClientGitHub.databinding.ActivityMainBinding
 import com.edurda77.ClientGitHub.model.UserModel
 import com.edurda77.filmlibrary.ui.UsersAdapter
-import javax.inject.Inject
+import org.koin.android.ext.android.inject
+
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    @Inject
-    lateinit var users: List<UserModel>
+
+    private val users: List<UserModel> by inject()
     //private val users: List<UserModel> by lazy { app.getUsers() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityMainBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        app.di.inject(this)
+        //app.di.inject(this)
         setRecycledView()
     }
     private fun setRecycledView() {

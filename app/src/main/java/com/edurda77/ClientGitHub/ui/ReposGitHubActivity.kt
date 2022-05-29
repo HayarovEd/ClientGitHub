@@ -3,6 +3,7 @@ package com.edurda77.ClientGitHub.ui
 import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -14,15 +15,16 @@ import com.edurda77.ClientGitHub.model.UserGitHubViewModel
 import com.edurda77.ClientGitHub.model.UserModel
 import com.edurda77.filmlibrary.ui.ReposAdapter
 import io.reactivex.rxjava3.core.Observable
-import javax.inject.Inject
+import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class ReposGitHubActivity : AppCompatActivity() {
     private lateinit var binding: ActivityReposGitHubBinding
 
-    @Inject
-    lateinit var gitHubRepoUseCase: GitHubRepoUseCase
 
+    private val gitHubRepoUseCase: GitHubRepoUseCase by inject()
+    //private val userViewModel: ViewModel by viewModel()
     //private val gitHubRepoUseCase: GitHubRepoUseCase by lazy { app.gitHubRepoUseCase }
 
     private val reposOfUser = emptyList<RepoGitHubModel>().toMutableList()
@@ -32,10 +34,11 @@ class ReposGitHubActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityReposGitHubBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
-        app.di.injectGitHubActivity(this)
+        //app.di.injectGitHubActivity(this)
         setContentView(binding.root)
         //val userProfile = binding.userRepo
         //val userAvatar = binding.userAvatar
+
         val arguments = intent.extras
 
         if (arguments != null) {
