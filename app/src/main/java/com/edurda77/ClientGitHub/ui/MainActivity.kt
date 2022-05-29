@@ -8,15 +8,19 @@ import androidx.recyclerview.widget.RecyclerView
 import com.edurda77.ClientGitHub.databinding.ActivityMainBinding
 import com.edurda77.ClientGitHub.model.UserModel
 import com.edurda77.filmlibrary.ui.UsersAdapter
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-
+    @Inject
+    lateinit var users: List<UserModel>
+    //private val users: List<UserModel> by lazy { app.getUsers() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityMainBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        app.di.inject(this)
         setRecycledView()
     }
     private fun setRecycledView() {
@@ -36,7 +40,7 @@ class MainActivity : AppCompatActivity() {
                     }.start()
                 }
             }
-        recyclerView.adapter = UsersAdapter(app.getUsers(),stateClickListener)
+        recyclerView.adapter = UsersAdapter(users,stateClickListener)
     }
 
 }
